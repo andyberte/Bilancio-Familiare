@@ -450,6 +450,9 @@
         </div>
     </div>
     <script>
+        // URL del tuo script Google Apps Script
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjuaQmnQmYT9Or721PcnGq1BpUpiIqi72PhvMzRy1OqoGCIw4yoCkRTWtV6BHIS0BU/exec';
+
         // DATI IN MEMORIA
         let movimenti = [];
         let categorie = [
@@ -481,7 +484,7 @@
                 conti: conti
             };
             try {
-                await fetch('https://script.google.com/macros/s/AKfycbxR4VyIJdFfOqcdLlX99pDCwEKxvZUJbpummQ3hU4Dhw0YOhHXGuAOi1-VkNl5oN3IP/exec', {
+                await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: { 'Content-Type': 'application/json' }
@@ -495,7 +498,7 @@
         // Funzione per caricare da Google Drive
         async function caricaDaGoogle() {
             try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbxR4VyIJdFfOqcdLlX99pDCwEKxvZUJbpummQ3hU4Dhw0YOhHXGuAOi1-VkNl5oN3IP/exec');
+                const response = await fetch(GOOGLE_SCRIPT_URL);
                 const data = await response.json();
                 movimenti = data.movimenti || [];
                 categorie = data.categorie || [];
